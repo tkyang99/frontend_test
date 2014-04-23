@@ -27,7 +27,7 @@
 	<hr/>
 
 	<h2>Search</h2>
-	<form>
+	<form onSubmit="return searchText();">
 		<input type="text" id="search_input" value="llama" />
 		<input type="submit" value="Search" />
 	</form>
@@ -54,5 +54,52 @@
 	</div>
 </div>
 
+<script>
+	var allText = "";  // String that will hold all the text
+	var node = document.getElementById("search_text");
+	
+	// First go thru all nodes and build the search string
+	function getText(ele) {
+		var nodes = ele.childNodes;
+		var type = ele.nodeType;
+		if(type == 3) {
+			allText += ele.nodeValue;
+		}
+		for(var i = 0; i < nodes.length; i++) {
+		
+			getText(nodes[i]);
+		
+		}
+	
+	}
+	
+	function searchText() {
+		var input = document.getElementById("search_input").value,
+			output = 'Found 0 occurances of the word "llama" in the below text.',
+			children = document.getElementById("content").childNodes,
+			count = 0,
+			index = 0;
+		
+		while (index >= 0) {
+			index = allText.indexOf(input, index);
+			
+			if (index >= 0) {
+				index++;
+				count++;
+			}
+		}
+		
+		output = output.replace('0', count.toString());
+		output = output.replace('llama', input);
+		
+		children[16].nodeValue = output;
+		
+		return false;
+	}
+	
+	getText(node, allText);
+
+
+</script>
 </body>
 </html>

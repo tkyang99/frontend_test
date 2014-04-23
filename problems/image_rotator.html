@@ -8,7 +8,7 @@
 			width: 450px;
 			height: 300px;
 			border: 1px solid black;
-			background: #aaa;
+			background: #black;
 			text-align: center;
 		}
 	</style>
@@ -54,6 +54,36 @@
 		Rotator Here
 	</div>
 </div>
+
+<script>
+		
+		var images = [
+			"<h4>Katarina</h4><p>Fruitcake bonbon donut jelly-o brownie biscuit marzipan pie.</p><img src='../img/kat_1.jpg' /><br/>",
+			"<h4>Red Card Katarina</h4><p>Cheesecake marzipan cupcake biscuit candy canes pudding.</p><img src='../img/kat_2.jpg' /><br/>",
+			"<h4>Kitty Cat Katarina</h4><p>Applicake topping halvah lemon drops wypas cotton candy.</p><img src='../img/kat_3.jpg' /><br/>",
+			"<h4>High Command Katarina</h4><p>Oat cake macaroon souffle cupcake chupa chups chocolate bar bear claw dragee lemon drops.</p><img src='../img/kat_4.jpg' /><br/>"
+		];
+		var index = 0;	
+		
+		//Start slideshow
+		var container = document.getElementById('rotator');
+		var rotateTimer=setInterval(
+			function(){
+				SwitchImage()},
+			3000);
+
+		function SwitchImage()
+		{
+			index++;
+			if(index >= images.length) {
+				index = 0;
+			}
+			
+			container.innerHTML=images[index];
+		}
+		
+		
+</script>
 
 </body>
 </html>
